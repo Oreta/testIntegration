@@ -1,0 +1,20 @@
+package com.ausecourse.controller;
+
+
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import org.springframework.web.bind.annotation.RestController;
+
+
+@RestController
+@RequestMapping("/test")
+public class TestController {
+	
+	@RequestMapping(value="/bienvenue")
+	public String test() {
+		
+		return "ca marche";
+	}
+	
+
+}
