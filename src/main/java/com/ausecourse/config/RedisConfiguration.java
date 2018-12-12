@@ -44,4 +44,4 @@ import org.springframework.data.redis.core.RedisTemplate;
 //		template.setConnectionFactory(jedisConnectionFactory());
 //		return template;
 //	}
-}
+//}
