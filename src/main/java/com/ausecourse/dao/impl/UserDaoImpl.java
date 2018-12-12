@@ -21,15 +21,15 @@ import com.ausecourse.repository.UserRepository;
 public class UserDaoImpl implements IUserDao {
 
 	//private static final Logger LOG =  LoggerFactory.getLogger(UserDao.class);
-	
+
 	@Autowired
 	private UserRepository userRepository ;
 
-	@Autowired 
+	@Autowired
 	private RoleRepository roleRepository ;
-	
 
-	
+
+
 	public User createUser(User user, Set<UserRole> userRoles) {
 		// TODO Auto-generated method stub
 		System.out.println("Is User null ? " + user.getNickname());
@@ -41,19 +41,19 @@ public class UserDaoImpl implements IUserDao {
 		else {
 			for(UserRole ur : userRoles)
 				roleRepository.save(ur.getRole());
-			
-			
+
+
 
 			user.getUserRoles().addAll(userRoles);
-			
-		
-			
-			
+
+
+
+
 			//user.setId("1");
-			
+
 			userRepository.save(user);
-			
-			
+
+
 		}
 		return localUser;
 	}
@@ -61,40 +61,34 @@ public class UserDaoImpl implements IUserDao {
 	public User findByUsername(String username) {
 		//return this.userRepository.findByName(username);
 		List<User> users = this.findAll() ;
-		int i = 0 ; 
-		if(!users.isEmpty()) {
-			while(i<users.size() && !users.get(i).getNickname().equals(username)) {
-				i++; 
-			}
-			if(i == users.size()) {
-				if(users.get(i-1).getNickname().equals(username))
-					return users.get(i); 
-				else return null ; 
-			}
-			else {
-				if(users.get(i).getNickname().equals(username))
-					return users.get(i);
-				else return null ;
-			}
-				
+		//System.out.println("merde " + username + ".." + users.get(3).getNickname() + users.size());
+		for(int i=0;i<users.size();i++) {
+			if (users.get(i).getNickname().equals(username))
+				return users.get(i) ;
 		}
-		else return null ; 
-		
+		return null ;
 	}
 
 	public User findByEmail(String email) {
-		return null ; // this.userRepository.findByEmail(email);
+		List<User> users = this.findAll() ;
+
+		for(int i=0;i<users.size();i++) {
+			if (users.get(i).getEmail().equals(email))
+				return users.get(i) ;
+		}
+		return null ;
+
 	}
 
 	public User save(User user) {
-		return userRepository.save(user) ; 
+		return userRepository.save(user) ;
 	}
-	
+
 
 	public Optional<User> findById(String id) {
-		return userRepository.findById(id) ; 
-	} 
-	
+		return userRepository.findById(id) ;
+	}
+
 
 
 	@Override
@@ -102,7 +96,7 @@ public class UserDaoImpl implements IUserDao {
 		List<User> list = new ArrayList<>();
 		this.userRepository.findAll().forEach(list::add);
 		return list ;
-		
+
 	}
 
 

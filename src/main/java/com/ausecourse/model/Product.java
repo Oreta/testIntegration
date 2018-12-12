@@ -11,17 +11,17 @@ public class Product implements Serializable {
 	@Id
 	private String id;
 	private String nom;
-	private double prix;
+	private int qty;
 	
 
 	public Product() {
 	}
 	
-	public Product(String id, String nom, double prix) {
+	public Product(String id, String nom, int prix) {
 		super();
 		this.id = id;
 		this.nom = nom;
-		this.prix = prix;
+		this.qty = prix;
 	}
 	
 	
@@ -46,12 +46,12 @@ public class Product implements Serializable {
 		this.nom = nom;
 	}
 
-	public double getPrix() {
-		return prix;
+	public int getPrix() {
+		return qty;
 	}
 
-	public void setPrix(double prix) {
-		this.prix = prix;
+	public void setPrix(int prix) {
+		this.qty = prix;
 	}
 
 }
